@@ -1,21 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './App.css';
+
+const Button = ({ text, background }) => {
+  const style = {};
+
+  if (background) {
+    style.background = background;
+  }
+
+  return (
+    <button className="button" style={style}>
+      I am a {text} button
+    </button>
+  );
+};
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  background: PropTypes.string,
+};
 
 function App() {
   return (
     <div className="App">
-      <button className="button">
-        I am a one button
-      </button>
-      <button className="button">
-        I am a two button
-      </button>
-      <button className="button" style={{ background: "red" }}>
-        I am a red button
-      </button>
-      <button className="button" style={{ background: "blue" }}>
-        I am a blue button
-      </button>
+      <Button text="one" />
+      <Button text="two" />
+      <Button text="red" background="red" />
+      <Button text="blue" background="blue" />
     </div>
   );
 }
