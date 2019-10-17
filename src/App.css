@@ -1,22 +1,42 @@
 .App {
+  height: 100vh;
+  padding: 120px;
+  box-sizing: border-box;
+
   text-align: center;
-}
+  background: white;
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+  overflow: auto;
+}
+
+.button {
+  width: 80px;
+  height: 40px;
+  box-sizing: content-box;
+
+  padding: 16px;
+  margin: 20px;
+
+  background: eggshell;
+  border-radius: 6px;
+
+  color: black;
+  font-size: 16px;
+
+  border: 1px solid gray;
+  box-shadow: 2px 2px gray;
+}
+
+.button:active {
+  border: none;
+  background: black;
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.button:focus {
+  outline: none;
 }
