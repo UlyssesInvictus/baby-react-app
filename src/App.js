@@ -81,9 +81,20 @@ const HomePage = () => {
   );
 };
 
-const TestPage = () => {
+const TestSection = () => "sub section";
+
+const TestPage = ({ match: { params: { id } } }) => {
   return (
-    <Link to="/home">Go Home</Link>
+    <div>
+      <Link to={`/${id}`}>Go to /{id}</Link>
+      <p>
+        <Route component={TestSection} />
+      </p>
+
+      <p>
+        <Route path='/test/home' render={() => 'I only render for /test/home'} />
+      </p>
+    </div>
   );
 };
 
@@ -91,17 +102,12 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/home">
-          <HomePage />
-        </Route>
+        <Route path="/home" component={HomePage} />
 
-        <Route path="/test">
-          <TestPage />
-        </Route>
+        <Route path="/test/:id" component={TestPage} />
+        <Route path="/test" component={TestPage} />
 
-        <Route path="/">
-          <HomePage />
-        </Route>
+        <Route path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>
   )
