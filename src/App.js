@@ -28,13 +28,17 @@ Button.propTypes = {
 };
 
 function App() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState(null);
 
   // didMount, didUpdate (willUpdate+render)
   useEffect(() => {
     document.title = text;
     console.log("This is the current text: ", text);
-  });
+
+    if (text || text === "") {
+      window.alert(`The text updated to: ${text}`);
+    }
+  }, [text]);
 
   return (
     <div className="App">
