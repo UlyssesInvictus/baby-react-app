@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 import './App.css';
 
 const Button = ({ text, background, onClick, currentText, setText }) => {
@@ -37,10 +44,7 @@ const usePrevious = (value) => {
   return ref.current;
 };
 
-// could also do this! (but it's bad for other reasons)
-// const inputRef = {};
-
-function App() {
+const HomePage = () => {
   const [text, setText] = useState("");
 
   const prevText = usePrevious(text);
@@ -75,6 +79,32 @@ function App() {
       </div>
     </div>
   );
+};
+
+const TestPage = () => {
+  return (
+    <Link to="/home">Go Home</Link>
+  );
+};
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/home">
+          <HomePage />
+        </Route>
+
+        <Route path="/test">
+          <TestPage />
+        </Route>
+
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default App;
