@@ -27,18 +27,33 @@ Button.propTypes = {
   setText: PropTypes.func,
 };
 
+const usePrevious = (value) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current = value;
+  });
+
+  return ref.current;
+};
+
+// could also do this! (but it's bad for other reasons)
+// const inputRef = {};
+
 function App() {
-  const [text, setText] = useState(null);
+  const [text, setText] = useState("");
+
+  const prevText = usePrevious(text);
 
   // didMount, didUpdate (willUpdate+render)
   useEffect(() => {
     document.title = text;
     console.log("This is the current text: ", text);
 
-    if (text || text === "") {
+    if (prevText || text) {
       window.alert(`The text updated to: ${text}`);
     }
-  }, [text]);
+  }, [text, prevText]);
 
   const inputRef = useRef();
 
