@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import './App.css';
@@ -40,6 +40,8 @@ function App() {
     }
   }, [text]);
 
+  const inputRef = useRef();
+
   return (
     <div className="App">
       <Button text="one" onClick={() => setText(text + " one")} />
@@ -47,6 +49,11 @@ function App() {
       <Button text="red" background="red" currentText={text} setText={setText} />
       <Button text="blue" background="blue" currentText={text} setText={setText} />
       <Button text="reset" onClick={() => setText("")} />
+
+      <div className="input">
+        <textarea placeholder="Type in me!" ref={inputRef} />
+        <button onClick={() => setText(text + " " + inputRef.current.value)}>add this</button>
+      </div>
 
       <div className="text">
         { text || "Click a button to add text!" }

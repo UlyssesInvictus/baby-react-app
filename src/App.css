@@ -45,6 +45,10 @@
   margin-bottom: 60px;
 }
 
+.input {
+  margin-bottom: 60px;
+}
+
 .text {
   width: 400px;
   height: 200px;
@@ -54,5 +58,4 @@
   border-radius: 6px;
 
   padding: 16px;
-
 }
