@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './App.css';
@@ -29,6 +29,12 @@ Button.propTypes = {
 
 function App() {
   const [text, setText] = useState("");
+
+  // didMount, didUpdate (willUpdate+render)
+  useEffect(() => {
+    document.title = text;
+    console.log("This is the current text: ", text);
+  });
 
   return (
     <div className="App">
